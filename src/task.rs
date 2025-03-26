@@ -7,10 +7,10 @@ pub enum Status {
 
 #[derive(Debug)]
 pub struct Task {
-    id: u32,
-    name: String,
-    description: String,
-    completed: Status,
+    pub id: u32,
+    pub name: String,
+    pub description: String,
+    pub status: Status,
 }
 
 impl Task {
