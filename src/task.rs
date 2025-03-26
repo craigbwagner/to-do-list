@@ -21,4 +21,8 @@ impl Task {
             status: Status::Incomplete,
         }
     }
+
+    pub fn complete_task(&mut self) {
+        self.status = Status::Completed;
+    }
 }
