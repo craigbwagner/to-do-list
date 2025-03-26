@@ -1,9 +1,11 @@
+#[derive(Debug)]
 pub enum Status {
     NotStarted,
     InProgress,
     Completed,
 }
 
+#[derive(Debug)]
 pub struct Task {
     id: u32,
     name: String,
