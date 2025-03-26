@@ -7,12 +7,19 @@ pub enum Status {
 
 #[derive(Debug)]
 pub struct Task {
-    pub id: u32,
-    pub name: String,
-    pub description: String,
-    pub status: Status,
+    id: u32,
+    name: String,
+    description: String,
+    status: Status,
 }
 
 impl Task {
-    pub fn create_task(&self, name: String, description: String) -> () {}
+    pub fn create_task(name: String, description: String) -> Self {
+        Self {
+            id: 1,
+            name,
+            description,
+            status: Status::NotStarted,
+        }
+    }
 }
