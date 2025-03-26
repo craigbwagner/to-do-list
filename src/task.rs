@@ -24,6 +24,8 @@ impl Task {
 
     pub fn complete_task(&mut self) {
         self.status = Status::Completed;
+
+        println!("Task '{}' marked as completed.", self.name);
     }
 
     // TODO: Create a method for deleting a task
