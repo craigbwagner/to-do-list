@@ -1,7 +1,6 @@
 #[derive(Debug)]
 pub enum Status {
-    NotStarted,
-    InProgress,
+    Incomplete,
     Completed,
 }
 
@@ -19,7 +18,7 @@ impl Task {
             id: 1,
             name,
             description,
-            status: Status::NotStarted,
+            status: Status::Incomplete,
         }
     }
 }
