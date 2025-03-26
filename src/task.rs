@@ -14,11 +14,5 @@ pub struct Task {
 }
 
 impl Task {
-    fn new(&self, name: String, description: String) -> Self {
-        Task {
-            name,
-            description,
-            completed: Status::NotStarted,
-        }
-    }
+    pub fn create_task(&self, name: String, description: String) -> () {}
 }
