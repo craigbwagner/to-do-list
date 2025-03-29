@@ -25,8 +25,6 @@ impl Task {
         // generate a unique id by incrementing the counter
         let id = counter.fetch_add(1, Ordering::SeqCst);
 
-        print!("Id is: {}", id);
-
         Self {
             id,
             name,
