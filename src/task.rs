@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 use std::sync::atomic::{AtomicU32, Ordering};
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub enum Status {
     Incomplete,
     Completed,
