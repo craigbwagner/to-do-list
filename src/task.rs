@@ -1,3 +1,4 @@
+use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 use std::sync::atomic::{AtomicU32, Ordering};
 
@@ -7,7 +8,7 @@ pub enum Status {
     Completed,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct Task {
     id: u32,
     name: String,
