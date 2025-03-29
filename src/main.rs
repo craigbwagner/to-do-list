@@ -1,14 +1,12 @@
 mod task;
 
-use crate::task::{Status, Task};
+use crate::task::Task;
 
 fn main() {
-    let mut sample_task = Task {
-        id: 1,
-        name: "Do dishes".to_string(),
-        description: "Obvious description".to_string(),
-        status: Status::NotStarted,
-    };
+    let name = "Dishes".to_string();
+    let description = "General Description".to_string();
+    let mut sample_task = Task::create_task(name, description);
+    Task::complete_task(&mut sample_task);
 
-    print!("{:#?}", sample_task)
+    println!("{:#?}", sample_task);
 }
