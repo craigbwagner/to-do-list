@@ -18,7 +18,7 @@ pub struct Task {
 static TASK_ID_COUNTER: OnceLock<AtomicU32> = OnceLock::new();
 
 impl Task {
-    pub fn create_task(name: String, description: String) -> Self {
+    pub fn new(name: String, description: String) -> Self {
         // initialize the counter if it hasn't already been initialized
         let counter = TASK_ID_COUNTER.get_or_init(|| AtomicU32::new(1));
 
