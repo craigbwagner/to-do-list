@@ -35,7 +35,7 @@ impl Task {
         }
     }
 
-    pub fn complete_task(&mut self) {
+    pub fn complete(&mut self) {
         self.status = Status::Completed;
 
         println!("Task '{}' marked as completed.", self.name);
