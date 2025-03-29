@@ -1,3 +1,6 @@
+use std::sync::OnceLock;
+use std::sync::atomic::{AtomicU32, Ordering};
+
 #[derive(Debug)]
 pub enum Status {
     Incomplete,
@@ -12,10 +15,20 @@ pub struct Task {
     status: Status,
 }
 
+static TASK_ID_COUNTER: OnceLock<AtomicU32> = OnceLock::new();
+
 impl Task {
     pub fn create_task(name: String, description: String) -> Self {
+        // initialize the counter if it hasn't already been initialized
+        let counter = TASK_ID_COUNTER.get_or_init(|| AtomicU32::new(1));
+
+        // generate a unique id by incrementing the counter
+        let id = counter.fetch_add(1, Ordering::SeqCst);
+
+        print!("Id is: {}", id);
+
         Self {
-            id: 1,
+            id,
             name,
             description,
             status: Status::Incomplete,
