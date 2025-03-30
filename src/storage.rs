@@ -1,7 +1,7 @@
 use crate::task::Task;
 use serde_json::{Error, Result};
 
-fn create_json(task: Task) -> Result<()> {
+pub fn create_json(task: Task) -> Result<()> {
     // serialize to JSON string
     let task_json = serde_json::to_string(&task)?;
 
