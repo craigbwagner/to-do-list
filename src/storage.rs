@@ -1,17 +1,15 @@
 use crate::task::Task;
 use serde_json::Result;
 
-use std::fs;
+use std::fs::File;
+use std::io::Write;
 
-pub fn create_json(task: Task) -> Result<()> {
+pub fn store_task(task: Task) -> Result<()> {
     // serialize to JSON string
     let task_json = serde_json::to_string(&task)?;
+    let mut file = File::create("tasks.json").expect("Failed to create file");
 
-    store_task(task_json);
+    file.write(task.as_bytes()).expect("Unable to write file");
 
     Ok(())
-}
-
-pub fn store_task(task: String) -> () {
-    fs::write("../tasks.txt", task).expect("Unable to write file");
 }
