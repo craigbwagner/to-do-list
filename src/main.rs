@@ -1,13 +1,14 @@
 mod storage;
 mod task;
 
+use storage::create_json;
+
 use crate::task::Task;
 
 fn main() {
     let name = "Dishes".to_string();
     let description = "General Description".to_string();
-    let mut sample_task = Task::new(name, description);
-    Task::complete(&mut sample_task);
+    let sample_task = Task::new(name, description);
 
-    println!("{:#?}", sample_task);
+    create_json(sample_task).expect("Failed to create task");
 }
