@@ -9,7 +9,8 @@ pub fn store_task(task: Task) -> Result<()> {
     let task_json = serde_json::to_string(&task)?;
     let mut file = File::create("tasks.json").expect("Failed to create file");
 
-    file.write(task.as_bytes()).expect("Unable to write file");
+    file.write(task_json.as_bytes())
+        .expect("Unable to write file");
 
     Ok(())
 }
