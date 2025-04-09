@@ -2,6 +2,9 @@ use serde::{Deserialize, Serialize};
 use std::sync::OnceLock;
 use std::sync::atomic::{AtomicU32, Ordering};
 
+use crate::storage::store_task;
+use crate::task;
+
 #[derive(Debug, Serialize, Deserialize)]
 pub enum Status {
     Incomplete,
@@ -19,7 +22,7 @@ pub struct Task {
 static TASK_ID_COUNTER: OnceLock<AtomicU32> = OnceLock::new();
 
 impl Task {
-    pub fn new(name: String, description: String) -> Self {
+    pub fn new(name: &str, description: &str) -> Self {
         // initialize the counter if it hasn't already been initialized
         let counter = TASK_ID_COUNTER.get_or_init(|| AtomicU32::new(1));
 
@@ -28,16 +31,16 @@ impl Task {
 
         Self {
             id,
-            name,
-            description,
+            name: name.to_string(),
+            description: description.to_string(),
             status: Status::Incomplete,
         }
     }
 
-    pub fn complete(&mut self) {
-        self.status = Status::Completed;
+    pub fn complete(id: usize) {
+        let status = Status::Completed;
 
-        println!("Task '{}' marked as completed.", self.name);
+        println!("Task '' marked as completed.");
     }
 
     // TODO: Create a method for deleting a task

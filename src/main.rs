@@ -11,7 +11,7 @@ fn main() {
 
     match cli.command {
         Commands::Add { name, description } => {
-            let new_task = Task::new(&name[..], description);
+            let new_task = Task::new(&name[..], &description);
             match storage::store_task(new_task) {
                 Ok(_) => println!("Task '{name}' added succesfully."),
                 Err(e) => println!("{e}"),
@@ -29,8 +29,4 @@ fn main() {
         }
         Commands::Remove { id } => {}
     }
-
-    let name = "Dishes";
-    let description = "General Description".to_string();
-    let sample_task = Task::new(&name, description);
 }
