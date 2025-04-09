@@ -13,10 +13,10 @@ pub enum Status {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Task {
-    id: u32,
-    name: String,
-    description: String,
-    status: Status,
+    pub id: u32,
+    pub name: String,
+    pub description: String,
+    pub status: Status,
 }
 
 static TASK_ID_COUNTER: OnceLock<AtomicU32> = OnceLock::new();
