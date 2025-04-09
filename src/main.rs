@@ -1,16 +1,36 @@
+mod cli;
 mod storage;
 mod task;
 
-use crate::task::Task;
+use clap::Parser;
+use cli::{CLI, Commands};
+use task::Task;
 
 fn main() {
-    let existing_tasks = storage::read_tasks();
+    let cli = CLI::parse();
 
-    let name = "Dishes".to_string();
-    let description = "General Description".to_string();
-    let sample_task = Task::new(name, description);
-
-    for task in existing_tasks {
-        dbg!(task);
+    match cli.command {
+        Commands::Add { name, description } => {
+            let new_task = Task::new(&name[..], description);
+            match storage::store_task(new_task) {
+                Ok(_) => println!("Task '{name}' added succesfully."),
+                Err(e) => println!("{e}"),
+            }
+            ()
+        }
+        Commands::List => {
+            let existing_tasks = storage::read_tasks();
+            for task in existing_tasks.iter() {
+                println!("{:#?}", task)
+            }
+        }
+        Commands::Complete { id } => {
+            Task::complete(id);
+        }
+        Commands::Remove { id } => {}
     }
+
+    let name = "Dishes";
+    let description = "General Description".to_string();
+    let sample_task = Task::new(&name, description);
 }
